@@ -105,3 +105,7 @@ When installing Assinare in remote environments, add the following properties to
 - **assinare-web.url**: the url where the assinare web application is deployed (default: <http://localhost:8080/assinare-web>)
 - **Caller-Allowable-Codebase**: the domains, separated by spaces, that can execute the application. If an asterisk (\*) wildcard is used then . If a protocol is not specified then both http and https can be used (default: \*)
 - **Application-Library-Allowable-Codebase**: a list of hostnames, separated by spaces, that can host the application. An asterisk (\*) can be used as a wildcard to specify all domains or as a specific domain wildcard, as in \*.linkare.com. If a protocol is not specified then both http and https can be used (default: \*)
+
+## Licensing
+
+Assionare is licensed under the European Union Public Licence (EUPL), version 1.2. See [LICENSE](LICENSE) for the full license text.

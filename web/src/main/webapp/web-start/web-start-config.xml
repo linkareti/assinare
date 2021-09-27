@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application name="Assinare">
+    <web-start>
+        <!-- Related to the passed in context -->
+        <launch url="${assinare-web.url}"/>
+        <jnlp url="assinare.jnlp" />
+        <should-work-on>
+            <device name="Desktop">
+                <os name="Windows 7">
+                    <platform name="Win32">
+                        <browser name="Chrome" version="37.0"/>
+                        <browser name="Firefox" version="32.0"/>
+                        <browser name="IE" version="8.0"/>
+                    </platform>
+                </os>
+                <os name="Mac OS X" version="10.7.5">
+                    <platform name="MacIntel">
+                        <browser name="Chrome" version="41.0"/>
+                        <browser name="Firefox" version="35.0"/>
+                        <browser name="Safari" version="6.1.1"/>
+                    </platform>
+                </os>
+                <os name="Ubuntu">
+                    <platform name="Linux x86_64">
+                        <browser name="Firefox" version="26.0" />
+                    </platform>
+                </os>
+            </device>
+        </should-work-on>
+    </web-start>
+</application>

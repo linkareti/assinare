@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.linkare</groupId>
+        <artifactId>assinare</artifactId>
+        <version>2.7.0</version>
+    </parent>
+    <artifactId>assinare-daemon</artifactId>
+    <name>Assinare - Daemon</name>
+    <packaging>jar</packaging>
+    
+    <properties>
+        <usePack200>false</usePack200>
+        <verifySigning>false</verifySigning>
+        <jnlp.codebase>http://localhost:8080/assinare-web</jnlp.codebase>
+        <keystore.path>${project.basedir}/src/main/certs/selfsigned.jks</keystore.path>
+        <keystore.password>password</keystore.password>
+        <keystore.alias>selfsigned</keystore.alias>
+        <Caller-Allowable-Codebase>*</Caller-Allowable-Codebase>
+        <Application-Library-Allowable-Codebase>*</Application-Library-Allowable-Codebase>
+        <!-- Useful on the off-chance we might want to use keystores outside of the project's folder -->
+        <!-- Separate from the following property because we need the filename alone in some places -->
+        <daemon.keystore.folder>src/main/localhost-keystores</daemon.keystore.folder>
+        <daemon.keystore.path>linkare.jks</daemon.keystore.path>
+        <daemon.keystore.password>zpA2IY8c4h</daemon.keystore.password>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>assinare-commons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>assinare-sign</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>assinare-id</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20151123</version>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>${daemon.keystore.folder}</directory>
+                <includes>
+                    <include>${daemon.keystore.path}</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/filtered</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.4.1</version>
+                <executions>
+                    <execution>
+                        <id>enforce-keystore-exists</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireFilesExist>
+                                    <files>
+                                        <file>${daemon.keystore.folder}/${daemon.keystore.path}</file>
+                                    </files>
+                                </requireFilesExist>
+                            </rules>
+                            <fail>true</fail>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+    
+    <profiles>
+        <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <id>bundle</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>webstart-maven-plugin</artifactId>
+                        <version>1.0-beta-6</version>
+                        <executions>
+                            <execution>
+                                <id>execution2</id>
+                                <goals>
+                                    <goal>jnlp-single</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <configuration>
+                                    <libPath>libs</libPath>
+
+                                    <jnlp>
+                                        <inputTemplate>template.vm</inputTemplate>
+                                        <outputFile>assinareDaemon.jnlp</outputFile>
+          
+                                        <spec>6.0+</spec>
+                                        <j2seVersion>1.8+</j2seVersion>
+                              
+                                        <!-- used to automatically identify the jar containing the main class. -->
+                                        <mainClass>com.linkare.assinare.daemon.AssinareDaemon</mainClass>
+                                    </jnlp>
+                            
+                                    <updateManifestEntries>
+                                        <Application-Name>${project.name}</Application-Name>
+                                        <Permissions>all-permissions</Permissions>
+                                        <Codebase>${host.name}</Codebase>
+                                        <Application-Library-Allowable-Codebase>${Application-Library-Allowable-Codebase}</Application-Library-Allowable-Codebase>
+                                        <Caller-Allowable-Codebase>${Caller-Allowable-Codebase}</Caller-Allowable-Codebase>
+                                        <Trusted-Only>true</Trusted-Only>
+                                        <Trusted-Library>true</Trusted-Library>
+                                    </updateManifestEntries>
+
+                                    <!--dependencies> <excludes> <exclude>com.linkare:assinare-nativelib-linux-i386</exclude> 
+                                    <exclude>com.linkare:assinare-nativelib-linux-amd64</exclude> <exclude>com.linkare:assinare-nativelib-windows-i386</exclude> 
+                                    <exclude>com.linkare:assinare-nativelib-windows-amd64</exclude> <exclude>com.linkare:assinare-nativelib-linux-i386</exclude> 
+                                    <exclude>com.linkare:assinare-nativelib-macosx</exclude> </excludes> </dependencies -->
+
+                                    <verifyjar>${verifySigning}</verifyjar>
+                                    <canUnsign>true</canUnsign>
+                                    <unsignAlreadySignedJars>true</unsignAlreadySignedJars>
+
+                                    <!-- defining this will automatically sign the jar and its dependencies, 
+                                    if necessary -->
+                                    <sign>
+                                        <keystore>${keystore.path}</keystore>
+                                        <storepass>${keystore.password}</storepass>
+                                        <alias>${keystore.alias}</alias>
+
+                                        <verify>${verifySigning}</verify> <!-- verify that the signing operation succeeded -->
+
+                                        <!-- only required for generating the keystore -->
+                                        <!--dnameCn>fillme</dnameCn> <dnameOu>fillme</dnameOu> <dnameO>fillme</dnameO> 
+                                        <dnameL>fillme</dnameL> <dnameSt>fillme</dnameSt> <dnameC>fillme</dnameC -->
+
+                                        <!-- KEYSTORE MANAGEMENT -->
+                                        <!--keystoreConfig -->
+                                        <!--delete>true</delete --> <!-- delete the keystore -->
+                                        <!--gen>true</gen -->       <!-- optional shortcut to generate the store. -->
+                                        <!--/keystoreConfig -->
+                                    </sign>
+
+                                    <!-- causes a version attribute to be output in each jar resource 
+                                    element, optional, default is false -->
+                                    <outputJarVersions>false</outputJarVersions>
+
+                                    <pack200>
+                                        <enabled>${usePack200}</enabled>
+                                    </pack200>
+                                    <gzip>${usePack200}</gzip>
+
+                                    <verbose>false</verbose>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.codehaus.mojo</groupId>
+                                <artifactId>webstart-pack200-impl</artifactId>
+                                <version>1.0-beta-6</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.codehaus.mojo</groupId>
+                                <artifactId>keytool-api-1.7</artifactId>
+                                <version>1.4</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>full</id>
+            <properties>
+                <usePack200>true</usePack200>
+                <verifySigning>true</verifySigning>
+            </properties>
+        </profile>
+    </profiles>
+</project>

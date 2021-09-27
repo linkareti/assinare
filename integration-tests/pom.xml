@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.linkare</groupId>
+        <artifactId>assinare</artifactId>
+        <version>2.7.0</version>
+    </parent>
+
+    <artifactId>assinare-integration-tests</artifactId>
+    <name>Assinare - Integration Tests</name>
+    
+    <properties>
+        <sonar.coverage.jacoco.xmlReportPaths>../${aggregate.report.file}</sonar.coverage.jacoco.xmlReportPaths>
+    </properties>
+        
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>assinare-test-utils</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>assinare-commons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>assinare-sign</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>assinare-cmd-bindings</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>assinare-server</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+        
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>report</id>
+                        <goals>
+                            <goal>report-aggregate</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <excludes>
+                                <!-- exclude the classes that Sonar ignores so we get a local report similar to Sonar's -->
+                                <exclude>com/linkare/assinare/server/nativeimage/**</exclude>
+                                <exclude>com/linkare/assinare/applet/**</exclude>
+                                <exclude>com/linkare/assinare/cardanalyser/**</exclude>
+                                <exclude>service/authentication/ama/*</exclude>
+                                <exclude>com/microsoft/schemas/_2003/_10/serialization/*</exclude>
+                                <exclude>org/datacontract/schemas/_2004/_07/ama_structures/*</exclude>
+                                <exclude>org/w3/_2001/xmlschema/*</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

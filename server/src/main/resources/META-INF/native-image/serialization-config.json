@@ -1,0 +1,12 @@
+[
+  {
+  "name":"org.apache.http.impl.auth.BasicScheme"
+  },
+  {
+  "name":"org.apache.http.impl.auth.RFC2617Scheme",
+  "customTargetConstructorClass":"org.apache.http.impl.auth.AuthSchemeBase"
+  },
+  {
+  "name":"java.util.HashMap"
+  }
+]

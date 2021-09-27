@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <!-- other code -->
+
+        <script src="../../assinareAPI.js" type="text/javascript"></script>
+        <script src="assinareIdIntegration.js" type="text/javascript"></script>
+        <script src="https://www.java.com/js/deployJava.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
+
+        <!-- other code -->
+    </head>
+
+    <body onload="documentLoaded();">
+
+        <!-- other code -->
+
+        <object id="assinareIdApplet" type="application/x-java-applet" width="78" height="37">
+            <param name="code" value="dummy" />
+            <param name="jnlp_href" value="http://test.assinare.eu/assinare-web/assinareId.jnlp" />
+            <param name="java_status_events" value="true" />
+
+        </object>
+
+        <a href="javascript:deployJava.launch('http://test.assinare.eu/assinare-web/assinareDaemon.jnlp');">
+            <img src="https://docs.oracle.com/javase/tutorial/images/jws-launch-button.png" alt="Launch Assinare" />
+        </a>
+
+        <!-- other code -->
+
+        <button id="citizenDataButton" onclick="getCitizenData();">
+            Get Citizen Data
+        </button>
+        <button id="citizenPictureButton" onclick="getCitizenPicture();">
+            Get Photo
+        </button>
+        <button id="citizenAddressButton" onclick="getCitizenAddress();">
+            Get Address
+        </button>
+
+        <!-- other code -->
+        
+        <!-- code to download picture -->
+        <a id="picture" download="photo.jp2" alt="Fotografia do utilizador" title="Fotografia do utilizador">
+        </a>
+        
+    </body>
+</html>

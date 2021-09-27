@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://www.java.com/js/deployJava.js"></script>
+        <script>
+            function test() {
+                document.getElementById('myApplet').signDocument('Documento de Requisitos.pdf');
+            }
+        </script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <script> 
+            var attributes = {
+                code:'com.linkare.assassina.applet.NewJApplet',
+                archive: '../assAssina-applet-1.0-SNAPSHOT.jar, ../libs/itextpdf-5.4.0.jar, ../libs/bcprov-jdk15on-1.48.jar, ../libs/bcpkix-jdk15on-1.48.jar, ../libs/httpcore-4.2.2.jar, ../libs/httpclient-4.2.3.jar, ../libs/commons-codec-1.6.jar, ../libs/commons-logging-1.1.1.jar, ../libs/httpmime-4.2.3.jar',
+                width:300,
+                height:300,
+                id:'myApplet'} ; 
+            var parameters = {/*jnlp_href: 'dynamictree_applet.jnlp'*/} ; 
+            deployJava.runApplet(attributes, parameters, '1.6'); 
+        </script>
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                xmlns:javaee="http://java.sun.com/xml/ns/javaee">
+    <jaxws:bindings node="wsdl:definitions/wsdl:types/xs:schema">
+        <jaxb:globalBindings>
+            <jaxb:javaType name="java.util.Calendar" xmlType="xs:dateTime"
+                           parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime"
+                           printMethod="javax.xml.bind.DatatypeConverter.printDateTime"/>
+        </jaxb:globalBindings>
+    </jaxws:bindings>
+    <jaxws:bindings node="wsdl:definitions/wsdl:types/xs:schema[@targetNamespace='http://schemas.datacontract.org/2004/07/Ama.Structures.CCMovelSignature']">
+        <jaxb:bindings node="//xs:complexType[@name='SignRequest' or @name='MultipleSignRequest']//xs:element[@name='ApplicationId']">
+            <jaxb:property>
+                <jaxb:baseType>
+                    <jaxb:javaType name="java.util.UUID"
+                                   parseMethod="com.linkare.assinare.cmd.bindings.UUIDXmlAdapter.parseUUIDBinary"
+                                   printMethod="com.linkare.assinare.cmd.bindings.UUIDXmlAdapter.readUUIDBinary"/>
+                </jaxb:baseType>
+            </jaxb:property>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:complexType[@name='SignRequest' or @name='MultipleSignRequest']//xs:element[@name='Pin' or @name='UserId']">
+            <jaxb:property>
+                <jaxb:baseType>
+                    <jaxb:javaType name="byte[]"
+                                   parseMethod="javax.xml.bind.DatatypeConverter.parseBase64Binary"
+                                   printMethod="javax.xml.bind.DatatypeConverter.printBase64Binary"/>
+                </jaxb:baseType>
+            </jaxb:property>
+        </jaxb:bindings>
+    </jaxws:bindings>
+    <jaxws:bindings node="wsdl:definitions/wsdl:types/xs:schema[@targetNamespace='http://Ama.Authentication.Service/']">
+        <jaxb:bindings node="//xs:element[@name='GetCertificate']//xs:element[@name='userId']">
+            <jaxb:property>
+                <jaxb:baseType>
+                    <jaxb:javaType name="byte[]"
+                                   parseMethod="javax.xml.bind.DatatypeConverter.parseBase64Binary"
+                                   printMethod="javax.xml.bind.DatatypeConverter.printBase64Binary"/>
+                </jaxb:baseType>
+            </jaxb:property>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='GetCertificate' or @name='ValidateOtp']//xs:element[@name='applicationId']">
+            <jaxb:property>
+                <jaxb:baseType>
+                    <jaxb:javaType name="java.util.UUID"
+                                   parseMethod="com.linkare.assinare.cmd.bindings.UUIDXmlAdapter.parseUUIDBinary"
+                                   printMethod="com.linkare.assinare.cmd.bindings.UUIDXmlAdapter.readUUIDBinary"/>
+                </jaxb:baseType>
+            </jaxb:property>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xs:element[@name='ValidateOtp']//xs:element[@name='code']">
+            <jaxb:property>
+                <jaxb:baseType>
+                    <jaxb:javaType name="byte[]"
+                                   parseMethod="javax.xml.bind.DatatypeConverter.parseBase64Binary"
+                                   printMethod="javax.xml.bind.DatatypeConverter.printBase64Binary"/>
+                </jaxb:baseType>
+            </jaxb:property>
+        </jaxb:bindings>
+    </jaxws:bindings>
+</jaxws:bindings>

@@ -1,0 +1,1 @@
+# com.linkare.assinare.server.cxf.MSBasicAuthenticationAssertionBuilder::true

@@ -1,0 +1,50 @@
+{
+  "name": "assinare-web",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "babel-preset-minify": "^0.5.1"
+  },
+  "babel": {
+    "moduleId": "assinare",
+    "presets": [
+      [
+        "minify",
+        {
+          "mangle": {
+            "topLevel": true
+          }
+        }
+      ]
+    ],
+    "env": {
+      "legacy": {
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "modules": "umd"
+            }
+          ]
+        ]
+      }
+    },
+    "comments": false
+  },
+  "browserslist": [
+    "> 0.25% in PT",
+    "last 2 versions",
+    "Firefox ESR",
+    "not dead",
+    "IE 11"
+  ],
+  "scripts": {
+    "build:api": "babel src/main/webapp/assinareAPI.js --env-name legacy --out-file src/main/webapp/assinareAPI.es5.min.js && babel src/main/webapp/assinareAPI.js --out-file src/main/webapp/assinareAPI.es6.min.js",
+    "babel": "babel",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

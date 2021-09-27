@@ -1,0 +1,167 @@
+/* 
+    Created on : Aug 19, 2014, 9:51:31 AM
+    Author     : rvaz
+*/
+@import url(//fonts.googleapis.com/css?family=Roboto+Slab:700);
+@import url(//fonts.googleapis.com/css?family=Roboto:500,700,500italic,400);
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body > main {
+    flex-grow: 1;
+    margin-bottom: 10px;
+}
+
+#colorbar {
+    width: 100%;
+    height: 5px;
+    background: -moz-linear-gradient(right, rgb(6, 173, 219) 0%, rgb(98, 43, 124) 50%, rgb(222, 12, 127) 100%) repeat scroll 0% 0% transparent;
+    background: linear-gradient(to right, rgb(6, 173, 219) 0%, rgb(98, 43, 124) 50%, rgb(222, 12, 127) 100%) repeat scroll 0% 0% transparent;
+    background: -webkit-linear-gradient(right, rgb(6, 173, 219) 0%, rgb(98, 43, 124) 50%, rgb(222, 12, 127) 100%) repeat scroll 0% 0% transparent;
+    background: -ms-linear-gradient(right, rgb(6, 173, 219) 0%, rgb(98, 43, 124) 50%, rgb(222, 12, 127) 100%) repeat scroll 0% 0% transparent;
+    background: -o-linear-gradient(right, rgb(6, 173, 219) 0%, rgb(98, 43, 124) 50%, rgb(222, 12, 127) 100%) repeat scroll 0% 0% transparent;
+    display: block;
+}
+
+.header {
+    margin-bottom: 50px;
+}
+
+#footer {
+    margin: 0px;
+    padding: 25px 10px 40px 60px;
+}
+
+.copyright {
+    font-size: 11px;
+}
+
+h1, h2, h3 {
+    font-family: 'Roboto Slab', Courier, sans-serif;
+    font-weight: 700; 
+    border-style: none;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 16px;
+}
+
+h3 {
+    font-size: 14px;
+}
+
+h4, h5, h6 {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: 400; 
+    border-style: none;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+h5 {
+    font-size: 14px;
+}
+
+h6 {
+    font-size: 12px;
+}
+
+h4.unsigned, h4.signed {
+    text-transform: uppercase;
+    padding: 7px;
+    text-align: center;
+}
+
+h4 > .fa {
+    margin-right: 5px;
+}
+
+th {
+    text-align: left;
+}
+
+caption, th, td {
+    font-size: 0.9em;
+}
+
+span.icon {
+    margin-right: 5px;
+}
+
+#fake-cc-form label {
+    text-transform: uppercase;
+    font-size: 0.9em;
+    color: #B4B8C1;
+}
+
+#fake-cc-form img.user-photo {
+    width: 100%;
+    box-sizing: border-box;
+    border: solid 2px #B87814;
+    cursor: not-allowed;
+}
+
+#fake-cc-form a[href] > img.user-photo {
+    border-color: #38621D;
+    cursor: pointer;
+}
+
+.blocker {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(170, 170, 170, 0.5);
+    z-index: 9999;
+}
+
+.nav-tabs {
+    margin-bottom: 1rem;
+}
+
+.btn-java, .btn-java:hover, .btn-java:focus, .btn-java:active {
+    background-color: #ec9400;
+    border-color: #ec9400;
+    color: #fff;
+    font-weight: bold;
+}
+
+.btn-java:hover, .btn-java:active {
+    background-color: #d38400;
+    border-color: #d38400;
+}
+
+.btn-java:focus {
+    box-shadow: 0 0 0 .2rem rgba(255,193,7,.5);
+}
+
+#iframeFormulario {
+    width: 100%;
+    height: 800px;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+tr.local td {
+    vertical-align: middle;
+}
+
+#deployJavaPlugin {
+    display: none;
+}

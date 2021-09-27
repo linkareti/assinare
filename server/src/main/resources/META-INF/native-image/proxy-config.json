@@ -1,0 +1,14 @@
+[
+  ["com.sun.xml.bind.marshaller.CharacterEscapeHandler"],
+  ["javax.ws.rs.core.HttpHeaders"],
+  ["javax.ws.rs.ext.Providers"],
+  ["org.apache.cxf.binding.soap.wsdl.extensions.SoapAddress"],
+  ["org.apache.cxf.binding.soap.wsdl.extensions.SoapBinding"],
+  ["org.apache.cxf.binding.soap.wsdl.extensions.SoapBody"],
+  ["org.apache.cxf.binding.soap.wsdl.extensions.SoapOperation"],
+  ["org.apache.cxf.common.jaxb.JAXBContextProxy"],
+  ["org.apache.cxf.common.util.ASMHelper$ClassWriter"],
+  ["org.apache.cxf.common.util.ASMHelper$FieldVisitor"],
+  ["org.apache.cxf.common.util.ASMHelper$MethodVisitor"],
+  ["service.authentication.ama.SCMDService","javax.xml.ws.BindingProvider","java.io.Closeable","org.apache.cxf.endpoint.Client"]
+]

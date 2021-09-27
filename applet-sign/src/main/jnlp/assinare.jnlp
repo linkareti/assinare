@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jnlp PUBLIC "-//Sun Microsystems, Inc//DTD JNLP Descriptor 6.0//EN" "http://java.sun.com/dtd/JNLP-6.0.dtd">
+<jnlp spec="6.0+" codebase="." href="assinare.jnlp">
+	<information>
+		<title>Applet Assinar-E Online</title>
+		<vendor>Linkare</vendor>
+		<homepage href="http://www.assinare.eu"/>
+	</information>
+	<security>
+		<all-permissions/>
+	</security>
+	<update check="always" policy="always" />
+	<resources>
+		<property name="jnlp.packEnabled" value="false"/>
+		<j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+		<jar href="./assinare-applet-${project.version}.jar" main="true"/>
+		<jar href="./libs/itextpdf-5.4.0.jar"/>
+		<jar href="./libs/bcprov-jdk15on-1.48.jar"/>
+		<jar href="./libs/bcpkix-jdk15on-1.48.jar"/>
+		<jar href="./libs/httpcore-4.2.2.jar"/>
+		<jar href="./libs/httpclient-4.2.3.jar"/>
+		<jar href="./libs/commons-codec-1.6.jar"/>
+		<jar href="./libs/commons-logging-1.1.1.jar"/>
+		<jar href="./libs/httpmime-4.2.3.jar"/>
+                <jar href="./libs/pdf-renderer-1.12.jar"/>
+		<jar href="./libs/laf-plugin-7.2.1.jar"/>
+		<jar href="./libs/laf-widget-7.2.1.jar"/>
+		<jar href="./libs/substance-7.2.1-lite.jar"/>
+                <jar href="./libs/trident-7.2.1-swing.jar"/>
+	</resources>
+	<resources os="Linux" arch="i386">
+		<nativelib href="./libs/assinare-nativelib-linux-i386-${project.version}.jar"/>
+	</resources>
+	<resources os="Linux" arch="amd64">
+		<nativelib href="./libs/assinare-nativelib-linux-amd64-${project.version}.jar"/>
+	</resources>
+	<resources os="Windows" arch="x86">
+		<nativelib href="./libs/assinare-nativelib-windows-i386-${project.version}.jar"/>
+	</resources>
+	<resources os="Windows" arch="amd64">
+		<nativelib href="./libs/assinare-nativelib-windows-amd64-${project.version}.jar"/>
+	</resources>
+	<resources os="Windows" arch="x86_64">
+		<nativelib href="./libs/assinare-nativelib-windows-amd64-${project.version}.jar"/>
+	</resources>
+	<resources os="Mac\ OS\ X" arch="x86_64">
+		<nativelib href="./libs/assinare-nativelib-macosx-${project.version}.jar"/>
+	</resources>
+	<applet-desc
+		name="Applet Assinar-E Online"
+		main-class="com.linkare.assinare.applet.AssinareApplet"
+		width="78"
+		height="35">
+		<!--param name="separate_jvm" value="true" /-->
+	</applet-desc>
+</jnlp>

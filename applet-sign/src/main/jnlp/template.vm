@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jnlp PUBLIC "-//Sun Microsystems, Inc//DTD JNLP Descriptor 6.0//EN" "http://java.sun.com/dtd/JNLP-6.0.dtd">
+<jnlp spec="$jnlpspec" codebase="$jnlpCodebase" href="$outputFile">
+	<information>
+		<title>$project.Name</title>
+		<vendor>$project.Organization.Name</vendor>
+		<homepage href="$project.Url"/>
+#if($offlineAllowed)
+                <offline-allowed/>
+#end
+        </information>
+#if($allPermissions)
+        <security>
+            <all-permissions/>
+        </security>
+#end
+	<update check="always" policy="always" />
+        <resources>
+		<j2se version="$j2seVersion" href="http://java.sun.com/products/autodl/j2se"/>
+		<property name="insubstantial.checkEDT" value="${insubstancial-checkEDT}"/>
+		<property name="insubstantial.logEDT" value="${insubstancial-logEDT}"/>
+                $dependencies.replaceAll(" *?<jar.*?assinare-nativelib-.*?/>\n", "")
+	</resources>
+	<applet-desc
+		name="$project.Name"
+		main-class="$mainClass"
+		width="78"
+		height="35">
+		<!--param name="separate_jvm" value="true" /-->
+	</applet-desc>
+</jnlp>
